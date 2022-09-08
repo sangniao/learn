@@ -1,0 +1,36 @@
+/*
+ * Copyright 2022
+ */
+package com.github.idelstak.stream.filter;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+
+/**
+ *
+ * @author sangniao.com <https://github.com/sangniao>
+ */
+public abstract class FilterFigures {
+
+    private final double exponent;
+
+    public FilterFigures(double exponent) {
+        this.exponent = exponent;
+    }
+
+    public abstract void doFilter();
+
+    protected List<Double> getRandomFigures() {
+        return ThreadLocalRandom.current()
+                .doubles((long) Math.pow(10, exponent), 1, 4)
+                .boxed()
+                .collect(
+                        Collectors.collectingAndThen(
+                                Collectors.toList(),
+                                Collections::unmodifiableList
+                        )
+                );
+    }
+}

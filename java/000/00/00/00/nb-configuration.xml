@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-shared-configuration>
+    <!--
+    该文件包含由NetBeans IDE中的模块编写的额外配置。
+    该配置的目的是在项目的所有用户之间共享，因此它被认为是版本控制检查的一部分。
+    因此，它被认为是版本控制检查的一部分。
+    如果没有这个配置，IDE中的某些功能可能会受到限制或完全失效。
+    -->
+    <properties xmlns="http://www.netbeans.org/ns/maven-properties-data/1">
+        <!--
+        影响IDE各部分的属性，特别是代码格式化之类的。
+        你可以将单个属性复制并粘贴到pom.xml文件中，IDE会接收它们。
+        这样，多个项目可以共享相同的设置（例如，对格式化规则很有用）。
+        这里定义的任何值都将覆盖pom.xml文件的值，但只适用于当前项目。
+        -->
+        <netbeans.hint.jdkPlatform>JDK_1.8</netbeans.hint.jdkPlatform>
+    </properties>
+</project-shared-configuration>
