@@ -1,0 +1,10 @@
+<div class="node">
+	<input type="checkbox" [(ngModel)]="isChecked"/>
+
+	<ng-container *ngTemplateOutlet="template; context: nodeContext"></ng-container>
+
+	<div *ngIf="node.children" class="node__children">
+		<cdk-internal-tree-node *ngFor="let child of node.children" [node]="child" [template]="template">
+		</cdk-internal-tree-node>
+	</div>
+</div>
