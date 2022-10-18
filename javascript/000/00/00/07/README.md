@@ -5,8 +5,6 @@ Twenty is a small package to help you get location (city/region and lat/lon coor
 
 For location data, the [ipinfo.io](http://ipinfo.io/) REST service is used.
 
-Twenty was created in conjunction with [this article](http://stackabuse.com/how-to-create-a-node-js-cli-application/).
-
 ## Installation
 Twenty can be installed as a project dependency or global CLI tool:
 
