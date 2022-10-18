@@ -1,0 +1,28 @@
+{
+  "name": "twenty",
+  "version": "0.2.0",
+  "description": "Locates the city/region of a given IP address",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scottwrobinson/twentyjs.git"
+  },
+  "keywords": [
+    "cli",
+    "location",
+    "ipinfo",
+    "tools"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Scott Robinson <s.w.robinson@gmail.com> (http://stackabuse.com)",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.67.0",
+    "yargs": "^4.2.0"
+  },
+  "bin": {
+    "twenty": "./bin/twenty"
+  }
+}
