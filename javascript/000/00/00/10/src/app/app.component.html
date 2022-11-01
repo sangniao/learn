@@ -1,0 +1,21 @@
+<h1>
+  How to use TS decorators to add caching logic to API calls
+</h1>
+
+<p>Open the console below to see result of requests</p>
+
+<br>
+
+<p>Updated at: {{ updatedAt$ | async | date: 'h:mm:ss' }}</p>
+
+<br>
+
+<p>User List #1: {{ usersRoles$ | async | json }}</p>
+
+<br>
+
+<p>User List #2: {{ usersRoles$ | async | json }}</p>
+
+<br>
+
+<button (click)="refreshUserList()">Refresh User List</button>
