@@ -1,0 +1,32 @@
+<!-- src/app/app.component.html -->
+
+<div class="container" [@.disabled]="disableAnimations$ | async">
+  <div class="spinner-container" *ngIf="isLoading" @fadeInOut>
+    <app-spinner><p class="spinner-message">Fetching Food Categories...</p></app-spinner>
+  </div>
+  <ul *ngIf="!isLoading" class="category-list">
+    <li class="category" @fadeInDownOutUp>
+      <div class="category-content">
+        <h5 class="category-title">🍲 Food Categories</h5>
+        <small
+          ><i>We found total {{ categoryList.length }} categories.</i></small
+        >
+      </div>
+    </li>
+    <li class="category" *ngFor="let category of categoryList" @fadeInUpOutDown>
+      <img
+        [src]="category.strCategoryThumb"
+        [attr.alt]="category.strCategory"
+        class="category-img"
+      />
+      <div class="category-content">
+        <h5 class="category-name">
+          {{ category.strCategory }}
+        </h5>
+        <small
+          ><i>ID: {{ category.idCategory }}</i></small
+        >
+      </div>
+    </li>
+  </ul>
+</div>

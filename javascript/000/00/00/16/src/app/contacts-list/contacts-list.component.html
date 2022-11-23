@@ -1,0 +1,5 @@
+<div class="container">
+  <ul *ngFor="let contact of matchingContacts, let i = index">
+    <li (click)="selectContact(i)">{{ contact.name }} - {{ contact.gender }}</li>
+  </ul>
+</div>
