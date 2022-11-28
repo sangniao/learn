@@ -1,0 +1,29 @@
+<div
+    *ngFor="let set of transposed; let index = index"
+    class="t-wrapper"
+    [class.t-wrapper_hoverable]="!!hintContent"
+    [class.t-wrapper_hovered]="drivers.get(index) | async"
+    [tuiHintHost]="hintHost"
+    [tuiHint]="hintContent"
+    [tuiHintContext]="{$implicit: index}"
+    [tuiHintDescribe]="getHintId(index)"
+    (mouseenter.once)="(0)"
+>
+    <div
+        class="t-container"
+        [style.height.%]="set | tuiMapper: percentMapper:collapsed:computedMax"
+    >
+        <div
+            #hintHost
+            class="t-host"
+        ></div>
+        <tui-bar-set
+            class="t-set"
+            [id]="getHintId(index)"
+            [tuiFocusable]="!!hintContent"
+            [value]="set"
+            [size]="size"
+            [collapsed]="collapsed"
+        ></tui-bar-set>
+    </div>
+</div>

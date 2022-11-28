@@ -1,0 +1,65 @@
+<div
+    tuiWrapper
+    [appearance]="appearance"
+    [readOnly]="readOnly"
+    [disabled]="computedDisabled"
+    [focus]="computedFocusVisible"
+    [hover]="pseudoHover"
+    [active]="pseudoActive"
+    [invalid]="computedInvalid"
+>
+    <div class="t-toggle">
+        <tui-loader
+            *ngIf="showLoader"
+            class="t-loader"
+            [size]="loaderSize"
+            [inheritColor]="true"
+            [showLoader]="checked"
+        ></tui-loader>
+        <span
+            *ngIf="showIcons && !showLoader"
+            class="t-icon-wrapper"
+        >
+            <tui-svg
+                *polymorpheusOutlet="iconOn as src; context: {$implicit: size}"
+                automation-id="tui-toggle__check-icon"
+                class="t-icon"
+                [src]="src"
+            ></tui-svg>
+        </span>
+        <div class="t-circle"></div>
+        <tui-loader
+            *ngIf="showLoader"
+            class="t-loader"
+            [size]="loaderSize"
+            [inheritColor]="true"
+            [showLoader]="!checked"
+        ></tui-loader>
+        <span
+            *ngIf="showIcons && !showLoader"
+            class="t-icon-wrapper"
+        >
+            <tui-svg
+                *polymorpheusOutlet="iconOff as src; context: {$implicit: size}"
+                automation-id="tui-toggle__cancel-icon"
+                class="t-icon t-icon_off"
+                [src]="src"
+            ></tui-svg>
+        </span>
+    </div>
+    <input
+        #focusableElement
+        type="checkbox"
+        role="switch"
+        automation-id="tui-toggle__checkbox"
+        class="t-checkbox"
+        [attr.aria-checked]="value"
+        [id]="id"
+        [disabled]="disabled"
+        [tuiChecked]="checked"
+        [tuiFocusable]="focusable"
+        (tuiCheckedChange)="onChecked($event)"
+        (tuiFocusedChange)="onFocused($event)"
+        (tuiFocusVisibleChange)="onFocusVisible($event)"
+    />
+</div>

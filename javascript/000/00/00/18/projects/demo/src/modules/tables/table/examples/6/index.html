@@ -1,0 +1,53 @@
+<button
+    tuiButton
+    size="s"
+    (click)="addColumn()"
+>
+    Add column
+</button>
+<button
+    tuiButton
+    size="s"
+    class="tui-space_left-2"
+    (click)="addRows()"
+>
+    Add row
+</button>
+
+<table
+    tuiTable
+    class="table tui-space_top-3"
+    [columns]="columns"
+>
+    <thead>
+        <tr tuiThGroup>
+            <ng-container *ngFor="let col of columns">
+                <th
+                    *tuiHead="col"
+                    tuiTh
+                >
+                    {{ col }}
+                </th>
+            </ng-container>
+        </tr>
+    </thead>
+    <tbody
+        *tuiLet="data | tuiTableSort as sortedData"
+        tuiTbody
+        [data]="sortedData"
+    >
+        <tr
+            *ngFor="let item of sortedData"
+            tuiTr
+        >
+            <ng-container *ngFor="let col of columns">
+                <td
+                    *tuiCell="col"
+                    tuiTd
+                >
+                    {{ item[col] }}
+                </td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>

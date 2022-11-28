@@ -1,0 +1,41 @@
+<div
+    *ngIf="spinTexts$ | async as texts"
+    #wrapper
+    tuiPreventDefault="mousedown"
+    class="t-wrapper"
+    [tuiFocusable]="computedFocusable"
+    (tuiFocusedChange)="onFocused($event)"
+    (tuiFocusVisibleChange)="onFocusVisible($event)"
+    (keydown.arrowLeft)="onLeftClick()"
+    (keydown.arrowRight)="onRightClick()"
+>
+    <button
+        tuiIconButton
+        type="button"
+        size="xs"
+        appearance=""
+        automation-id="tui-primitive-spin-button__left"
+        icon="tuiIconChevronLeftLarge"
+        class="t-arrow"
+        [class.t-arrow_hidden]="leftComputedDisabled"
+        [title]="texts[0]"
+        [focusable]="false"
+        (click)="onLeftClick()"
+    ></button>
+    <span class="t-content">
+        <ng-content></ng-content>
+    </span>
+    <button
+        tuiIconButton
+        type="button"
+        size="xs"
+        appearance=""
+        automation-id="tui-primitive-spin-button__right"
+        icon="tuiIconChevronRightLarge"
+        class="t-arrow"
+        [class.t-arrow_hidden]="rightComputedDisabled"
+        [title]="texts[1]"
+        [focusable]="false"
+        (click)="onRightClick()"
+    ></button>
+</div>

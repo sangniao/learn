@@ -1,0 +1,37 @@
+{
+    "root": "projects/addon-charts",
+    "sourceRoot": "projects/addon-charts",
+    "projectType": "library",
+    "prefix": "tui",
+    "implicitDependencies": ["!testing"],
+    "architect": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:ng-packagr",
+            "outputs": ["dist/addon-charts"],
+            "options": {
+                "tsConfig": "tsconfig.build.json",
+                "project": "projects/addon-charts/ng-package.json"
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "dependencies",
+                    "params": "forward"
+                }
+            ]
+        },
+        "test": {
+            "builder": "@nrwl/workspace:run-commands",
+            "outputs": ["coverage/addon-charts"],
+            "options": {
+                "command": "jest --testMatch '**/projects/addon-charts/**/*.spec.ts' --collect-coverage --collect-coverage-from '**/projects/addon-charts/**/*.ts' --coverage-directory=coverage/addon-charts"
+            }
+        },
+        "publish": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "ts-node ./scripts/publish.ts --path ./dist/addon-charts --dry-run {args.dry-run}"
+            }
+        }
+    }
+}

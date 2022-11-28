@@ -1,0 +1,31 @@
+@import '../../styles/taiga-ui-local.less';
+
+:host {
+    display: block;
+    font: var(--tui-font-text-l);
+    text-align: center;
+    font-weight: bold;
+}
+
+.t-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    outline: none;
+}
+
+.t-arrow {
+    margin: 0 @space;
+
+    &_hidden {
+        visibility: hidden;
+    }
+}
+
+.t-content {
+    padding: 0 2 * @space;
+
+    :host._focus-visible & {
+        box-shadow: 0 0 0 1px var(--tui-focus);
+    }
+}

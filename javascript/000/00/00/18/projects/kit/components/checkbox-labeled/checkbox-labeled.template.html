@@ -1,0 +1,22 @@
+<label class="t-wrapper">
+    <tui-checkbox
+        [disabled]="computedDisabled"
+        [readOnly]="readOnly"
+        [focusable]="focusable"
+        [nativeId]="nativeId"
+        [pseudoInvalid]="computedInvalid"
+        [pseudoFocus]="pseudoFocus"
+        [pseudoHover]="pseudoHover"
+        [pseudoActive]="pseudoActive"
+        [size]="size"
+        [ngModel]="value"
+        (ngModelChange)="onModelChange($event)"
+        (focusedChange)="onFocused($event)"
+    ></tui-checkbox>
+    <div
+        class="t-content"
+        [class.t-content_disabled]="computedDisabled"
+    >
+        <ng-content></ng-content>
+    </div>
+</label>

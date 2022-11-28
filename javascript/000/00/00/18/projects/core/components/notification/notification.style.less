@@ -1,0 +1,69 @@
+@import '../../styles/taiga-ui-local.less';
+
+:host {
+    .text-basic();
+    position: relative;
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: var(--tui-radius-m);
+    background: #fff; // fallback for IE
+    background: var(--tui-base-01);
+    box-sizing: border-box;
+    overflow: hidden;
+
+    &:after {
+        .fullsize();
+        content: '';
+        pointer-events: none;
+    }
+
+    &._has-close-button {
+        padding-right: 2rem;
+    }
+
+    &._has-icon {
+        padding-left: 2.75rem;
+    }
+
+    &[data-tui-host-status='info'] {
+        color: var(--tui-info-fill);
+        background: linear-gradient(var(--tui-info-bg), var(--tui-info-bg)), var(--tui-base-01);
+    }
+
+    &[data-tui-host-status='success'] {
+        color: var(--tui-success-fill);
+        background: linear-gradient(var(--tui-success-bg), var(--tui-success-bg)), var(--tui-base-01);
+    }
+
+    &[data-tui-host-status='error'] {
+        color: var(--tui-error-fill);
+        background: linear-gradient(var(--tui-error-bg), var(--tui-error-bg)), var(--tui-base-01);
+    }
+
+    &[data-tui-host-status='warning'] {
+        color: var(--tui-warning-fill);
+        background: linear-gradient(var(--tui-warning-bg), var(--tui-warning-bg)), var(--tui-base-01);
+    }
+}
+
+.t-content {
+    word-wrap: break-word;
+    color: var(--tui-text-01);
+}
+
+.t-icon {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    display: flex;
+    width: 1rem;
+    height: 100%;
+    max-height: 3rem;
+    align-items: center;
+}
+
+.t-close {
+    position: absolute;
+    top: 0.625rem;
+    right: 0.5rem;
+}

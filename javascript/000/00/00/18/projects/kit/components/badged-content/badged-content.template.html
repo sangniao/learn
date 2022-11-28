@@ -1,0 +1,59 @@
+<ng-content></ng-content>
+
+<div
+    *ngIf="topNotification"
+    class="t-notification t-notification_top"
+    [style.background]="topNotification"
+    [style.boxShadow]="boxShadow"
+></div>
+
+<div
+    *ngIf="bottomNotification"
+    class="t-notification t-notification_bottom"
+    [style.background]="bottomNotification"
+    [style.boxShadow]="boxShadow"
+></div>
+
+<div
+    *ngIf="contentTop"
+    class="t-content t-content_top"
+    [style.boxShadow]="boxShadow"
+>
+    <ng-container *polymorpheusOutlet="contentTop as content">
+        <tui-badge
+            *ngIf="contentIsNumber(content)"
+            [status]="getStatus(colorTop)"
+            [style.backgroundColor]="colorTop"
+            [size]="badgeSize"
+            [value]="contentTop"
+        ></tui-badge>
+        <tui-svg
+            *ngIf="contentIsString(content)"
+            class="t-icon"
+            [style.color]="colorTop"
+            [src]="content"
+        ></tui-svg>
+    </ng-container>
+</div>
+
+<div
+    *ngIf="contentBottom && sizeBig"
+    class="t-content t-content_bottom"
+    [style.boxShadow]="boxShadow"
+>
+    <ng-container *polymorpheusOutlet="contentBottom as content">
+        <tui-badge
+            *ngIf="contentIsNumber(content)"
+            [status]="getStatus(colorBottom)"
+            [style.backgroundColor]="colorBottom"
+            [size]="badgeSize"
+            [value]="contentBottom"
+        ></tui-badge>
+        <tui-svg
+            *ngIf="contentIsString(content)"
+            class="t-icon"
+            [style.color]="colorBottom"
+            [src]="content"
+        ></tui-svg>
+    </ng-container>
+</div>

@@ -1,0 +1,51 @@
+<h6
+    i18n
+    class="tui-text_h6"
+>
+    Can be expanded with
+    <a
+        tuiLink
+        target="_blank"
+        routerLink="/directives/hint"
+    >
+        TuiHint
+    </a>
+</h6>
+
+<p>
+    Requires you to import
+    <code>TuiHintModule</code>
+</p>
+
+<tui-doc-documentation>
+    <ng-template
+        i18n
+        documentationPropertyName="tuiHintContent"
+        documentationPropertyMode="input"
+        documentationPropertyType="PolymorpheusContent"
+        [documentationPropertyValues]="documentedComponent.hintContentVariants"
+        [(documentationPropertyValue)]="documentedComponent.hintContent"
+    >
+        Content of a hint
+    </ng-template>
+    <ng-template
+        i18n
+        documentationPropertyName="tuiHintDirection"
+        documentationPropertyMode="input"
+        documentationPropertyType="TuiHintDirection"
+        [documentationPropertyValues]="documentedComponent.hintDirectionVariants"
+        [(documentationPropertyValue)]="documentedComponent.hintDirection"
+    >
+        Hint direction
+    </ng-template>
+    <ng-template
+        i18n
+        documentationPropertyName="tuiHintAppearance"
+        documentationPropertyMode="input"
+        documentationPropertyType="string"
+        [documentationPropertyValues]="documentedComponent.hintAppearanceVariants"
+        [(documentationPropertyValue)]="documentedComponent.hintAppearance"
+    >
+        Hint mode
+    </ng-template>
+</tui-doc-documentation>

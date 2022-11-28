@@ -1,0 +1,32 @@
+{
+    "root": "projects/testing",
+    "sourceRoot": "projects/testing",
+    "projectType": "library",
+    "prefix": "tui",
+    "implicitDependencies": ["cdk"],
+    "architect": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:ng-packagr",
+            "outputs": ["dist/testing"],
+            "options": {
+                "tsConfig": "tsconfig.build.json",
+                "project": "projects/testing/ng-package.json"
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "dependencies",
+                    "params": "forward"
+                }
+            ]
+        },
+        "test": {
+            "builder": "@nrwl/workspace:run-commands",
+            "outputs": ["coverage/testing"],
+            "options": {
+                "command": "jest --testMatch '**/projects/testing/**/*.spec.ts'",
+                "forwardAllArgs": true
+            }
+        }
+    }
+}

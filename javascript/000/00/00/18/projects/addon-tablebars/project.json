@@ -1,0 +1,38 @@
+{
+    "root": "projects/addon-tablebars",
+    "sourceRoot": "projects/addon-tablebars/src",
+    "projectType": "library",
+    "prefix": "tui",
+    "implicitDependencies": ["!testing"],
+    "architect": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:ng-packagr",
+            "outputs": ["dist/addon-tablebars"],
+            "options": {
+                "tsConfig": "tsconfig.build.json",
+                "project": "projects/addon-tablebars/ng-package.json"
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "dependencies",
+                    "params": "forward"
+                }
+            ]
+        },
+        "test": {
+            "builder": "@nrwl/workspace:run-commands",
+            "outputs": ["coverage/addon-tablebars"],
+            "options": {
+                "command": "jest --testMatch '**/projects/addon-tablebars/**/*.spec.ts' jest --testMatch '**/projects/addon-tablebars/**/*.spec.ts' --collect-coverage --collect-coverage-from '**/projects/addon-tablebars/**/*.ts' --coverage-directory=coverage/addon-tablebars",
+                "forwardAllArgs": true
+            }
+        },
+        "publish": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "ts-node ./scripts/publish.ts --path ./dist/addon-tablebars --dry-run {args.dry-run}"
+            }
+        }
+    }
+}

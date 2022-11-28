@@ -1,0 +1,127 @@
+name: Unit tests
+
+on:
+  pull_request:
+    paths:
+      - 'projects/**'
+      - '!projects/demo/**'
+      - '!projects/icons/**'
+      - '**/test.yml'
+      - 'angular.json'
+      - 'package.json'
+      - 'tsconfig*'
+  push:
+    branches:
+      - main
+      - '!release/**'
+
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
+  FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+  IS_MAIN_BRANCH: ${{ github.ref == 'refs/heads/main' }}
+
+jobs:
+  test:
+    if: ${{ !contains(github.head_ref, 'release/') }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          [
+            addon-charts,
+            addon-commerce,
+            addon-doc,
+            addon-editor,
+            addon-mobile,
+            addon-preview,
+            addon-table,
+            addon-tablebars,
+            cdk,
+            core,
+            demo,
+            kit,
+          ]
+    name: ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Run tests for ${{ matrix.project }}
+        run: npx nx test ${{ matrix.project }}
+
+      - name: Archive coverage artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-${{ github.workflow }}-${{ github.run_id }}
+          path: coverage
+
+  codecov:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: coverage-${{ github.workflow }}-${{ github.run_id }}
+          path: coverage
+
+      - name: Display structure of coverage files
+        run: tree -L 2 ./coverage -P 'lcov.info'
+
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/kit/
+          flags: summary,kit
+          name: kit
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/core/
+          flags: summary,core
+          name: core
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/cdk/
+          flags: summary,cdk
+          name: cdk
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/addon-tablebars/
+          flags: summary,addon-tablebars
+          name: addon-tablebars
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/addon-table/
+          flags: summary,addon-table
+          name: addon-table
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/addon-mobile/
+          flags: summary,addon-mobile
+          name: addon-mobile
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/addon-editor/
+          flags: summary,addon-editor
+          name: addon-editor
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/addon-doc/
+          flags: summary,addon-doc
+          name: addon-doc
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/addon-commerce/
+          flags: summary,addon-charts
+          name: addon-commerce
+      - uses: codecov/codecov-action@v2
+        with:
+          directory: ./coverage/addon-charts/
+          flags: summary,addon-charts
+          name: addon-charts
+
+concurrency:
+  group: test-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true

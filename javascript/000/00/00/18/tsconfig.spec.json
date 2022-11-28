@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "strict": false,
+        "incremental": true,
+        "outDir": "./out-tsc/spec",
+        "types": ["jest", "jasmine", "node", "webpack-env"]
+    },
+    "exclude": ["**/schematics/**/*", "projects/demo-integrations"]
+}

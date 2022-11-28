@@ -1,0 +1,46 @@
+<div
+    tuiWrapper
+    appearance="input-file"
+    class="t-wrapper"
+    [class._mobile]="isMobile"
+    [focus]="computedFocused"
+    [hover]="pseudoHover || fileDragged || null"
+    [active]="pseudoActive"
+    [disabled]="computedDisabled"
+>
+    <label
+        automation-id="tui-input-file__label"
+        (tuiDroppableDropped)="onDropped($event)"
+        (tuiDroppableDragOverChange)="onDragOver($event)"
+        (mousedown.prevent.silent)="(0)"
+    >
+        <a tuiLink>
+            <ng-container *polymorpheusOutlet="computedLink$ | async as text">
+                {{ text }}
+            </ng-container>
+        </a>
+        <ng-container *polymorpheusOutlet="computedLabel$ | async as text">
+            {{ text }}
+        </ng-container>
+        <ng-container *ngIf="!readOnly && !computedDisabled">
+            <ng-content select="input"></ng-content>
+            <input
+                #input
+                type="file"
+                class="t-native"
+                [id]="id"
+                [accept]="accept"
+                [multiple]="multiple"
+                [tuiFocusable]="focusable"
+            />
+        </ng-container>
+    </label>
+</div>
+
+<ng-template #formatRejection>
+    {{ (inputFileTexts$ | async)?.formatRejectionReason || '' }}
+</ng-template>
+
+<ng-template #maxSizeRejection>
+    {{ maxFileSize | tuiMaxSizeRejectionError | async }}
+</ng-template>

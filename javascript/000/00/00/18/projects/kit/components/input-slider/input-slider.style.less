@@ -1,0 +1,19 @@
+@import 'taiga-ui-local';
+
+:host {
+    .createStackingContext();
+    display: block;
+    height: max-content;
+}
+
+// Dont change CSS-selector (we require the such specificity to override default styles without !important)
+input[type='range'] {
+    position: absolute;
+    top: 100%;
+    left: calc(var(--tui-radius-m) / 2);
+    right: 0;
+    width: auto;
+    margin: -0.5625rem 0 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: calc(var(--tui-radius-m) * 5) calc(var(--tui-radius-m) * 1.5);
+}

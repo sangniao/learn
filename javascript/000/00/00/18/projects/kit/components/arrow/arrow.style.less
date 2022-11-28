@@ -1,0 +1,12 @@
+@import 'taiga-ui-local';
+
+:host {
+    .transition(transform);
+    display: block;
+    cursor: pointer;
+    pointer-events: none;
+
+    &._rotated {
+        transform: rotate(180deg);
+    }
+}
