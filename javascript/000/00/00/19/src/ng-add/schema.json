@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "tailwind-schematic-ng-add",
+    "title": "Add TailwindCSS to Angular application",
+    "description": "Standalone schematic to add TailwindCSS to Angular application",
+    "type": "object",
+    "properties": {
+        "project": {
+            "type": "string",
+            "description": "The name of the project where we want to add files.",
+            "$default": {
+                "$source": "projectName"
+            },
+            "alias": "p"
+        },
+        "cssType": {
+            "description": "The file extension or preprocessor to use for style files.",
+            "type": "string",
+            "default": "css",
+            "enum": [
+                "css",
+                "scss",
+                "sass",
+                "less"
+            ],
+            "x-prompt": {
+                "message": "Which stylesheet type would you like to use?",
+                "type": "list",
+                "items": [
+                    {
+                        "value": "css",
+                        "label": "CSS"
+                    },
+                    {
+                        "value": "scss",
+                        "label": "SCSS   [ https://sass-lang.com/documentation/syntax#scss]"
+                    },
+                    {
+                        "value": "sass",
+                        "label": "Sass   [ https://sass-lang.com/documentation/syntax#the-indented-syntax]"
+                    },
+                    {
+                        "value": "less",
+                        "label": "Less   [ http://lesscss.org]"
+                    }
+                ]
+            }
+        },
+        "tailwindcssVersion": {
+            "type": "string",
+            "description": "The TailwindCSS version to be installed.",
+            "default": "latest",
+            "alias": "tw"
+        }
+    },
+    "required": []
+}
