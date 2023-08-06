@@ -1,0 +1,29 @@
+<div class="wrapper">
+    <tui-ring-chart
+        [value]="value"
+        [(activeItemIndex)]="activeItemIndex"
+    >
+        <tui-money
+            [singleColor]="true"
+            [value]="sum"
+        ></tui-money>
+        <div>Total</div>
+    </tui-ring-chart>
+
+    <div class="legend">
+        <tui-legend-item
+            *ngFor="let label of labels; let index = index"
+            size="s"
+            class="item"
+            [color]="getColor(index)"
+            [text]="label"
+            [active]="isItemActive(index)"
+            (tuiHoveredChange)="onHover(index, $event)"
+        >
+            <tui-money
+                [singleColor]="true"
+                [value]="value[index]"
+            ></tui-money>
+        </tui-legend-item>
+    </div>
+</div>

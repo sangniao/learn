@@ -1,0 +1,32 @@
+<header class="t-header">
+    <h2
+        automation-id="tui-pdf-viewer__label"
+        class="t-title"
+    >
+        {{ context.label }}
+    </h2>
+    <div class="t-actions">
+        <!-- TODO: Polymorpheus fix type -->
+        <ng-container *polymorpheusOutlet="$any(context.actions) as text; context: context">
+            {{ text }}
+        </ng-container>
+    </div>
+    <button
+        tuiIconButton
+        shape="rounded"
+        appearance=""
+        size="s"
+        icon="tuiIconCloseLarge"
+        class="t-close"
+        [title]="closeWord$ | async"
+        (click)="context.$implicit.complete()"
+    ></button>
+</header>
+<section class="t-content">
+    <!-- TODO: Polymorpheus fix type -->
+    <iframe
+        *polymorpheusOutlet="$any(context.content) as content; context: context"
+        class="t-iframe"
+        [src]="content"
+    ></iframe>
+</section>

@@ -1,0 +1,42 @@
+<tui-input-number
+    [min]="min"
+    [max]="max"
+    [precision]="precision"
+    [decimal]="decimal"
+    [prefix]="showValueContent ? '' : prefix"
+    [postfix]="showValueContent ? '' : postfix"
+    [readOnly]="readOnly"
+    [pseudoFocus]="computedFocused"
+    [pseudoHover]="pseudoHover"
+    [pseudoActive]="pseudoActive"
+    [pseudoInvalid]="pseudoInvalid"
+    [ngModel]="value"
+    (ngModelChange)="safelyUpdateValue($event)"
+    (focusedChange)="onFocused($event)"
+    (keydown.arrowUp.prevent)="onVerticalArrowKeyDown(1)"
+    (keydown.arrowDown.prevent)="onVerticalArrowKeyDown(-1)"
+>
+    <ng-content></ng-content>
+    <div
+        *ngIf="showValueContent"
+        ngProjectAs="tuiContent"
+        automation-id="tui-input-slider__value-content"
+    >
+        <ng-container *polymorpheusOutlet="valueContent as text; context: {$implicit: value}">
+            {{ text }}
+        </ng-container>
+    </div>
+</tui-input-number>
+
+<input
+    tuiSlider
+    type="range"
+    [tuiFocusable]="false"
+    [max]="computedSteps"
+    [segments]="segments"
+    [keySteps]="computeKeySteps(keySteps, min, max)"
+    [attr.disabled]="readOnly || disabled || null"
+    [ngModel]="value"
+    (ngModelChange)="onSliderChange($event)"
+    (click)="focusTextInput()"
+/>

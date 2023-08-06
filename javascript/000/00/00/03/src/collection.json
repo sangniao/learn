@@ -1,0 +1,21 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "run-schematics": {
+      "description": "A blank schematic.",
+      "factory": "./run-schematics/index#runSchematics"
+    },
+    "child-schematic": {
+      "description": "A blank schematic.",
+      "factory": "./child-schematic/index#childSchematic"
+    },
+    "lint-schematic": {
+      "description": "A blank schematic.",
+      "factory": "./lint-schematic/index#lintSchematic"
+    },
+    "lint-caller-schematic": {
+      "description": "A blank schematic.",
+      "factory": "./lint-caller-schematic/index#lintCallerSchematic"
+    }
+  }
+}

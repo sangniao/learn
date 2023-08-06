@@ -1,0 +1,39 @@
+{
+  "name": "ngx-tailwindcss-schematic",
+  "version": "1.0.0",
+  "description": "Simple Angular Schematic to add tailwindcss to any Angular application",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -p tsconfig.json --watch",
+    "test": "npm run build && jasmine src/**/*_spec.js"
+  },
+  "keywords": [
+    "angular",
+    "schematics",
+    "tailwindcss",
+    "css",
+    "scss"
+  ],
+  "author": "sanjiv kumar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrsan22/angular-tailwindcss-schematics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mrsan22/angular-tailwindcss-schematics/issues"
+  },
+  "homepage": "https://github.com/mrsan22/angular-tailwindcss-schematics",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^10.1.1",
+    "@angular-devkit/schematics": "^10.1.1",
+    "@schematics/angular": "^10.1.1",
+    "typescript": "~4.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.1",
+    "@types/jasmine": "~3.5.0",
+    "jasmine": "^3.5.0"
+  }
+}

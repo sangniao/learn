@@ -1,0 +1,17 @@
+<div
+    tuiWrapper
+    [appearance]="appearance"
+    [disabled]="disabled"
+    [focus]="focused"
+    [hover]="hovered"
+    [active]="pressed"
+    [invalid]="invalid"
+>
+    <tui-svg
+        *polymorpheusOutlet="icon as src; context: {$implicit: size}"
+        class="t-mark"
+        [class.t-mark_on]="!empty"
+        [src]="src"
+    ></tui-svg>
+    <ng-content></ng-content>
+</div>

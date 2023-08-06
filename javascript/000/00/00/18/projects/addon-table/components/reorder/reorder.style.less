@@ -1,0 +1,64 @@
+@import 'taiga-ui-local';
+
+:host {
+    display: block;
+    font: var(--tui-font-text-s);
+    padding: 0.5rem 0;
+}
+
+.t-item {
+    .transition(background);
+    display: flex;
+    height: 2rem;
+    align-items: center;
+    padding: 0 0.75rem;
+    cursor: ns-resize;
+    background: var(--tui-base-01);
+    outline: none;
+
+    &:hover {
+        background: var(--tui-base-02);
+
+        .t-button {
+            opacity: 1;
+        }
+    }
+}
+
+.t-icon {
+    margin-right: 0.5rem;
+    color: var(--tui-base-05);
+}
+
+.t-button {
+    .transition(opacity);
+    margin-left: auto;
+    opacity: 0;
+
+    &_hidden {
+        opacity: 1;
+    }
+}
+
+/* stylelint-disable-next-line */
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+/* stylelint-disable-next-line */
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* stylelint-disable-next-line */
+.t-wrapper.cdk-drop-list-dragging .t-item:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+
+    &:hover {
+        background: var(--tui-base-01);
+    }
+
+    .t-button {
+        display: none;
+    }
+}

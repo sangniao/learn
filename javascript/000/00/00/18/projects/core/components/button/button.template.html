@@ -1,0 +1,40 @@
+<ng-container *ngIf="appearance$ | async"></ng-container>
+<div
+    tuiWrapper
+    class="t-wrapper"
+    [appearance]="computedAppearance"
+    [hover]="pseudoHover"
+    [active]="pseudoActive"
+    [disabled]="computedDisabled"
+    [focus]="computedFocusVisible"
+>
+    <span class="t-content">
+        <span
+            *ngIf="icon"
+            class="t-left"
+        >
+            <tui-svg
+                *polymorpheusOutlet="icon as text"
+                class="t-icon"
+                [src]="text"
+            ></tui-svg>
+        </span>
+        <ng-content></ng-content>
+        <span
+            *ngIf="iconRight"
+            class="t-right"
+        >
+            <tui-svg
+                *polymorpheusOutlet="iconRight as text"
+                class="t-icon"
+                [src]="text"
+            ></tui-svg>
+        </span>
+    </span>
+    <tui-loader
+        *ngIf="showLoader"
+        class="t-loader"
+        [size]="loaderSize"
+        [inheritColor]="true"
+    ></tui-loader>
+</div>

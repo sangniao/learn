@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="gender-options">
+    <div>
+      <button (click)="changeGender('male')">Male</button>
+      <button (click)="changeGender('female')">Female</button>
+      <button (click)="changeGender('all')">All</button>
+    </div>
+    <h1 *ngIf="selectedContact !== null">I have clicked on {{ selectedContact.name }}</h1>
+
+    <!-- Here the parent defines a listener "selectionEvent" on the child component's directive and uses 
+      it's recieveSelectionEvent function to handle it -->
+    <ccda-contacts-list [gender]="selectedGender" (selectionEvent)="recieveSelectionEvent($event)"></ccda-contacts-list>
+  </div>
+
+  <ccda-siblings-list></ccda-siblings-list>
+</div>

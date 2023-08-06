@@ -1,0 +1,13 @@
+<app-drawer #commentDrawer="drawer" [isOpen]="isOpen" [style.--drawer-width]="'300px'" (drawerClosed)="close()">
+	<div header>
+		<button class="close" (click)="commentDrawer.close()">X</button>
+	</div>
+	<div body>
+		<p>
+			Loved the article, seems like I need to relearn angular myself! Could you
+			share some open source angular projects? I want to dig in and see how the
+			pros code! <br />
+      Thanks!
+    </p>
+	</div>
+</app-drawer>

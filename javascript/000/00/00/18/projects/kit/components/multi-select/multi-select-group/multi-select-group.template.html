@@ -1,0 +1,16 @@
+<span
+    *tuiLet="value$ | async as value"
+    class="t-wrapper"
+>
+    <span class="t-label">{{ label }}</span>
+    <button
+        *ngIf="label && !(empty$ | async)"
+        tuiLink
+        class="t-button"
+        [disabled]="!!(disabled$ | async)"
+        (click)="onClick(value)"
+    >
+        {{ (multiSelectTexts$ | async)?.[value ? 'none' : 'all'] }}
+    </button>
+</span>
+<ng-content></ng-content>

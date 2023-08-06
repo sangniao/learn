@@ -1,0 +1,18 @@
+<button
+    tuiButton
+    type="button"
+    size="s"
+    appearance="whiteblock"
+    class="t-button"
+    [pseudoHover]="active || null"
+>
+    <div class="t-wrapper">
+        <ng-content select="tui-primitive-checkbox"></ng-content>
+        <span
+            class="t-dot"
+            [style.backgroundColor]="color || 'var(--tui-primary)'"
+        ></span>
+        <span class="t-text">{{ text }}</span>
+        <ng-content></ng-content>
+    </div>
+</button>

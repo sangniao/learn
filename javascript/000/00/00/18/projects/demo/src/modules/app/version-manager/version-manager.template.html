@@ -1,0 +1,21 @@
+<tui-select
+    *ngIf="versions.length"
+    class="select"
+    [ngModel]="initialVersion"
+    [valueContent]="'label' | tuiStringify | tuiStringifyContent"
+>
+    <ng-content></ng-content>
+    <tui-data-list
+        *tuiDataList
+        size="s"
+    >
+        <a
+            *ngFor="let version of versions"
+            tuiOption
+            [value]="version"
+            [href]="getVersionHref(version)"
+        >
+            {{ version.label }}
+        </a>
+    </tui-data-list>
+</tui-select>

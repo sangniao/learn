@@ -1,0 +1,58 @@
+<tui-hosted-dropdown
+    class="t-hosted"
+    [canOpen]="canOpen"
+    [content]="dropdown"
+    [open]="open && canOpen"
+    (openChange)="onOpenChange($event)"
+    (tuiActiveZoneChange)="onActiveZone($event)"
+>
+    <tui-primitive-textfield
+        *tuiLet="dateFiller$ | async as dateFiller"
+        automation-id="tui-input-date-range__textfield"
+        tuiValueAccessor
+        class="t-textfield"
+        [tuiTextfieldIcon]="calendarIcon && iconContent"
+        [pseudoFocus]="innerPseudoFocused"
+        [pseudoHover]="pseudoHover"
+        [pseudoActive]="pseudoActive"
+        [invalid]="computedInvalid"
+        [nativeId]="nativeId"
+        [filler]="getComputedRangeFiller(dateFiller || '')"
+        [readOnly]="readOnly"
+        [disabled]="computedDisabled"
+        [textMask]="computedMask"
+        [value]="computedValue"
+        (valueChange)="onValueChange($event)"
+    >
+        <ng-content></ng-content>
+        <ng-content
+            select="input"
+            ngProjectAs="input"
+        ></ng-content>
+    </tui-primitive-textfield>
+
+    <ng-template #iconContent>
+        <tui-svg
+            *polymorpheusOutlet="calendarIcon as src; context: {$implicit: size}"
+            automation-id="tui-input-date-range__icon"
+            [class.t-icon]="!computedDisabled"
+            [src]="src"
+            (click)="onIconClick()"
+        ></tui-svg>
+    </ng-template>
+
+    <ng-template #dropdown>
+        <tui-calendar-range
+            [defaultViewedMonth]="defaultViewedMonth"
+            [disabledItemHandler]="disabledItemHandler"
+            [items]="items"
+            [min]="min"
+            [max]="max"
+            [markerHandler]="markerHandler"
+            [minLength]="minLength"
+            [maxLength]="maxLength"
+            [value]="value"
+            (valueChange)="onRangeChange($event)"
+        ></tui-calendar-range>
+    </ng-template>
+</tui-hosted-dropdown>

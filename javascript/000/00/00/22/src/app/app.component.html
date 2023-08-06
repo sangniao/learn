@@ -1,0 +1,13 @@
+<section>
+
+  <h1>Best Angular article ever!</h1>
+  Learn more angular at <a href="https://bharath-ravi.medium.com/">bharath-ravi.medium.com/</a>
+<hr>
+<div>
+    <button (click)="isDrawerOpen = true">Responses(1)</button>
+</div>
+  <app-comment-drawer
+    [isOpen]="isDrawerOpen"
+    (closed)="onClose()"
+  ></app-comment-drawer>
+</section>

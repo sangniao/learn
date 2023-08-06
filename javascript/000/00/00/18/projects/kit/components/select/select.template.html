@@ -1,0 +1,58 @@
+<tui-hosted-dropdown
+    class="t-hosted"
+    [canOpen]="interactive && !nativeDropdownMode"
+    [content]="datalist || ''"
+    (tuiActiveZoneChange)="onActiveZone($event)"
+>
+    <tui-primitive-textfield
+        automation-id="tui-select__textfield"
+        class="t-textfield"
+        [tuiTextfieldIcon]="arrow"
+        [editable]="false"
+        [pseudoFocus]="computedFocused"
+        [pseudoHover]="pseudoHover"
+        [pseudoActive]="pseudoActive"
+        [invalid]="computedInvalid"
+        [nativeId]="nativeId"
+        [readOnly]="readOnly"
+        [disabled]="computedDisabled"
+        [focusable]="computedFocusable"
+        [value]="computedValue"
+        (valueChange)="onValueChange($any($event))"
+        (keydown.delete.prevent)="onKeyDownDelete()"
+        (keydown.backspace.prevent)="onKeyDownDelete()"
+    >
+        <ng-content></ng-content>
+        <ng-content
+            select="input"
+            ngProjectAs="input"
+        ></ng-content>
+
+        <ng-template #select>
+            <ng-container *ngIf="isMobile">
+                <ng-content
+                    select="select"
+                    ngProjectAs="select"
+                ></ng-content>
+            </ng-container>
+        </ng-template>
+
+        <ng-container
+            *ngTemplateOutlet="select"
+            ngProjectAs="select"
+        ></ng-container>
+
+        <div
+            *ngIf="value !== null"
+            ngProjectAs="tuiContent"
+            automation-id="tui-select__value"
+            class="t-value"
+        >
+            <div
+                *polymorpheusOutlet="computedContent as text; context: {$implicit: value, active: computedFocused}"
+                class="t-primitive-value"
+                [textContent]="text"
+            ></div>
+        </div>
+    </tui-primitive-textfield>
+</tui-hosted-dropdown>

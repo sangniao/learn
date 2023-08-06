@@ -1,0 +1,114 @@
+<ng-container *ngIf="content?.changes | async"></ng-container>
+<ng-container *ngIf="hintOptions?.change$ | async"></ng-container>
+<div
+    tuiWrapper
+    automation-id="tui-primitive-textfield__wrapper"
+    [appearance]="appearance"
+    [readOnly]="readOnly"
+    [disabled]="disabled"
+    [focus]="computedFocused"
+    [hover]="pseudoHover"
+    [active]="pseudoActive"
+    [invalid]="computedInvalid"
+    [style.--text-indent.px]="decor.pre$ | async"
+    (mousedown)="onMouseDown($event)"
+    (click.prevent.silent)="(0)"
+    (tuiAutofilledChange)="onAutofilled($event)"
+>
+    <ng-content select="input"></ng-content>
+    <ng-content select="select"></ng-content>
+    <input
+        #focusableElement
+        tuiMaskAccessor
+        automation-id="tui-primitive-textfield__native-input"
+        class="t-input"
+        [attr.disabled]="computedDisabled || null"
+        [attr.name]="name"
+        [attr.aria-invalid]="computedInvalid"
+        [id]="id"
+        [readOnly]="readOnly || !editable"
+        [tuiFocusable]="computedFocusable"
+        [ngModel]="value"
+        (ngModelChange)="onModelChange($event)"
+    />
+    <div
+        *ngIf="inputHidden"
+        automation-id="tui-primitive-textfield__value"
+        class="t-input t-input_template"
+    >
+        <ng-content select="tuiContent"></ng-content>
+    </div>
+    <div class="t-content">
+        <div
+            *ngIf="iconLeftContent"
+            class="t-icon t-icon_left"
+        >
+            <tui-svg
+                *polymorpheusOutlet="iconLeftContent as src; context: {$implicit: size}"
+                [src]="src"
+            ></tui-svg>
+        </div>
+        <div class="t-wrapper">
+            <label
+                *ngIf="hasPlaceholder"
+                automation-id="tui-primitive-textfield__placeholder"
+                class="t-placeholder"
+                [class.t-placeholder_raised]="placeholderRaised"
+                [for]="computedId"
+            >
+                <ng-content></ng-content>
+            </label>
+            <div class="t-wrapper-value-decoration">
+                <tui-value-decoration
+                    #decor
+                    automation-id="tui-primitive-textfield__value-decoration"
+                    aria-hidden="true"
+                    class="t-value-decoration"
+                    [class.t-has-value]="value"
+                    [style.textIndent.px]="getIndent$(focusableElement) | async"
+                ></tui-value-decoration>
+            </div>
+        </div>
+        <div
+            *ngIf="hasCustomContent"
+            automation-id="tui-primitive-textfield__custom-content"
+            class="t-custom-content"
+        >
+            <tui-svg
+                *polymorpheusOutlet="controller.customContent as src"
+                class="t-custom-icon"
+                [src]="src"
+            ></tui-svg>
+        </div>
+        <span
+            *ngIf="hasCleaner"
+            automation-id="tui-primitive-textfield__cleaner"
+            class="t-cleaner"
+            (click.stop)="clear()"
+        >
+            <tui-svg
+                *polymorpheusOutlet="iconCleaner as src"
+                [src]="src"
+            ></tui-svg>
+        </span>
+        <tui-tooltip
+            *ngIf="hintOptions && hintOptions.content && !computedDisabled"
+            automation-id="tui-primitive-textfield__tooltip"
+            [describeId]="computedId"
+            [content]="hintOptions.content"
+            [direction]="hintOptions.direction"
+            [appearance]="hintOptions.appearance"
+            [showDelay]="hintOptions.showDelay"
+            [hideDelay]="hintOptions.hideDelay"
+        ></tui-tooltip>
+        <div
+            *ngIf="iconContent"
+            class="t-icon"
+        >
+            <tui-svg
+                *polymorpheusOutlet="iconContent as src; context: {$implicit: size}"
+                [src]="src"
+            ></tui-svg>
+        </div>
+    </div>
+</div>

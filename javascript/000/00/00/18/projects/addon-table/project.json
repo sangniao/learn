@@ -1,0 +1,37 @@
+{
+    "root": "projects/addon-table",
+    "sourceRoot": "projects/addon-table",
+    "projectType": "library",
+    "prefix": "tui",
+    "implicitDependencies": ["!testing"],
+    "architect": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:ng-packagr",
+            "outputs": ["dist/addon-table"],
+            "options": {
+                "tsConfig": "tsconfig.build.json",
+                "project": "projects/addon-table/ng-package.json"
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "dependencies",
+                    "params": "forward"
+                }
+            ]
+        },
+        "test": {
+            "builder": "@nrwl/workspace:run-commands",
+            "outputs": ["coverage/addon-table"],
+            "options": {
+                "command": "jest --testMatch '**/projects/addon-table/**/*.spec.ts' jest --testMatch '**/projects/addon-table/**/*.spec.ts' --collect-coverage --collect-coverage-from '**/projects/addon-table/**/*.ts' --coverage-directory=coverage/addon-table"
+            }
+        },
+        "publish": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "ts-node ./scripts/publish.ts --path ./dist/addon-table --dry-run {args.dry-run}"
+            }
+        }
+    }
+}

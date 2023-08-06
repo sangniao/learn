@@ -1,0 +1,55 @@
+<div
+    #focusableElement
+    automation-id="tui-accordion__item-wrapper"
+    class="t-wrapper"
+    [tuiFocusable]="computedFocusable"
+    (tuiFocusVisibleChange)="onFocusVisible($event)"
+    (tuiFocusedChange)="onFocused($event)"
+    (keydown.space)="onItemKeyDownSpace($event)"
+    (keydown.enter)="onItemKeyDownSpace($event)"
+    (keydown.esc)="onItemKeyDownEsc($event)"
+>
+    <div
+        automation-id="tui-accordion__item-header"
+        class="t-header"
+        [class.t-header_open]="open"
+        [class.t-header_hoverable]="!disableHover"
+        (click)="onRowToggle()"
+    >
+        <div
+            automation-id="tui-accordion__item-title"
+            class="t-title"
+        >
+            <ng-content></ng-content>
+        </div>
+        <tui-svg
+            *ngIf="showArrow"
+            automation-id="tui-accordion__item-arrow"
+            src="tuiIconChevronDownLarge"
+            class="t-icon"
+            [class.t-icon_open]="open"
+        ></tui-svg>
+    </div>
+    <tui-expand
+        [async]="async"
+        [expanded]="open"
+    >
+        <ng-template tuiExpandContent>
+            <div
+                *ngIf="lazyContent"
+                automation-id="tui-accordion__item-content"
+                class="t-content"
+            >
+                <ng-container *polymorpheusOutlet="lazyContent as text">
+                    {{ text }}
+                </ng-container>
+            </div>
+        </ng-template>
+        <div
+            *ngIf="eagerContent"
+            class="t-content"
+        >
+            <ng-content select="[tuiAccordionItemContent]"></ng-content>
+        </div>
+    </tui-expand>
+</div>

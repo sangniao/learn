@@ -1,0 +1,27 @@
+<tui-primitive-textfield
+    [tuiTextfieldIcon]="iconContent"
+    [invalid]="computedInvalid"
+    [focusable]="focusable"
+    [disabled]="disabled"
+    [readOnly]="readOnly"
+    [value]="value"
+    (valueChange)="onValueChange($event)"
+    (focusedChange)="onFocused($event)"
+>
+    <ng-content></ng-content>
+    <input
+        tuiTextfield
+        [type]="inputType"
+    />
+</tui-primitive-textfield>
+
+<ng-template #iconContent>
+    <tui-svg
+        class="icon"
+        [tuiHint]="hintContent"
+        [src]="icon"
+        (click)="togglePasswordVisibility()"
+    ></tui-svg>
+</ng-template>
+
+<ng-template #hintContent>{{ hint }}</ng-template>

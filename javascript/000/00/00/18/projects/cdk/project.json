@@ -1,0 +1,75 @@
+{
+    "root": "projects/cdk",
+    "sourceRoot": "projects/cdk",
+    "projectType": "library",
+    "prefix": "tui",
+    "implicitDependencies": ["!testing"],
+    "architect": {
+        "prebuild": {
+            "builder": "@angular-devkit/build-angular:ng-packagr",
+            "options": {
+                "tsConfig": "tsconfig.build.json",
+                "project": "projects/cdk/ng-package.json"
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "dependencies",
+                    "params": "forward"
+                }
+            ]
+        },
+        "build": {
+            "builder": "@nrwl/workspace:run-commands",
+            "outputs": ["dist/cdk"],
+            "options": {
+                "parallel": false,
+                "commands": ["nx prebuild cdk", "nx postbuild cdk"]
+            }
+        },
+        "postbuild": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "tsc -p ./tsconfig.schematics.json"
+            }
+        },
+        "test": {
+            "builder": "@nrwl/workspace:run-commands",
+            "outputs": ["coverage/cdk"],
+            "options": {
+                "command": "jest --testMatch '**/projects/cdk/**/*.spec.ts' jest --testMatch '**/projects/cdk/**/*.spec.ts' --collect-coverage --collect-coverage-from '**/projects/cdk/**/*.ts' --coverage-directory=coverage/cdk",
+                "forwardAllArgs": true
+            },
+            "dependsOn": [
+                {
+                    "target": "test-schematics",
+                    "projects": "self",
+                    "params": "forward"
+                }
+            ]
+        },
+        "test-schematics": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+                "parallel": false,
+                "commands": [
+                    "tsc -p ./projects/cdk/schematics/tsconfig.spec.json",
+                    "jasmine ./dist/cdk/schematics/**/*.spec.js"
+                ]
+            },
+            "dependsOn": [
+                {
+                    "target": "postbuild",
+                    "projects": "self",
+                    "params": "forward"
+                }
+            ]
+        },
+        "publish": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "ts-node ./scripts/publish.ts --path ./dist/cdk --dry-run {args.dry-run}"
+            }
+        }
+    }
+}

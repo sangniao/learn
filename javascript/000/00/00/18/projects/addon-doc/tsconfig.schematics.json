@@ -1,0 +1,10 @@
+{
+    "extends": "../../tsconfig.schematics.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "rootDir": "schematics",
+        "outDir": "../../dist/addon-doc/schematics"
+    },
+    "include": ["schematics/**/*"],
+    "exclude": ["schematics/*/files/**/*"]
+}

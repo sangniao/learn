@@ -1,0 +1,10 @@
+<form [formGroup]="testForm">
+    <tui-input-phone-international
+        formControlName="testValue"
+        class="input"
+        [countries]="countries"
+        [(countryIsoCode)]="countryIsoCode"
+    >
+        Type your number
+    </tui-input-phone-international>
+</form>

@@ -1,0 +1,210 @@
+@import 'taiga-ui-local';
+
+@size-xs: 1.5rem;
+@size-s: 2rem;
+@size-m: 3rem;
+@size-l: 4rem;
+@size-xl: 6rem;
+@size-xxl: 9rem;
+
+:host {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    border-radius: var(--tui-radius-m);
+    color: var(--tui-secondary-active);
+    text-align: center;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+    background: var(--tui-avatar-background, currentColor);
+    user-select: none;
+    overflow: hidden;
+
+    &[data-size='xs'] {
+        font: var(--tui-font-text-s);
+        width: @size-xs;
+        height: @size-xs;
+    }
+
+    &[data-size='s'] {
+        font: var(--tui-font-text-m);
+        width: @size-s;
+        height: @size-s;
+    }
+
+    &[data-size='m'] {
+        font: var(--tui-font-text-l);
+        width: @size-m;
+        height: @size-m;
+    }
+
+    &[data-size='l'] {
+        font: var(--tui-font-heading-5);
+        width: @size-l;
+        height: @size-l;
+        border-radius: var(--tui-radius-l);
+    }
+
+    &[data-size='xl'] {
+        font: var(--tui-font-heading-3);
+        width: @size-xl;
+        height: @size-xl;
+        border-radius: var(--tui-radius-l);
+    }
+
+    &[data-size='xxl'] {
+        font: var(--tui-font-heading-1);
+        width: @size-xxl;
+        height: @size-xxl;
+        border-radius: var(--tui-radius-l);
+    }
+
+    &[new] {
+        &[data-size='xxs'] {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: var(--tui-radius-s);
+
+            .t-icon {
+                transform: scale(0.58);
+            }
+        }
+
+        &[data-size='xs'] {
+            width: 2rem;
+            height: 2rem;
+            border-radius: var(--tui-radius-s);
+
+            .t-icon {
+                transform: scale(0.83);
+            }
+        }
+
+        &[data-size='s'] {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: calc(1.5 * var(--tui-radius-s));
+
+            .t-icon {
+                transform: scale(1);
+            }
+        }
+
+        &[data-size='m'] {
+            width: 3rem;
+            height: 3rem;
+            border-radius: calc(2 * var(--tui-radius-s));
+
+            .t-icon {
+                transform: scale(1.17);
+            }
+        }
+
+        &[data-size='l'] {
+            width: 4rem;
+            height: 4rem;
+            border-radius: calc(2 * var(--tui-radius-s));
+
+            .t-icon {
+                transform: scale(1.67);
+            }
+        }
+
+        &[data-size='xl'] {
+            width: 6rem;
+            height: 6rem;
+            border-radius: calc(3 * var(--tui-radius-s));
+
+            .t-icon {
+                transform: scale(2.33);
+            }
+        }
+
+        &[data-size='xxl'] {
+            width: 8rem;
+            height: 8rem;
+            border-radius: calc(4 * var(--tui-radius-s));
+
+            .t-icon {
+                transform: scale(3.33);
+            }
+        }
+    }
+
+    &._has-avatar {
+        background-color: transparent;
+    }
+
+    &._rounded {
+        border-radius: 100% !important;
+    }
+}
+
+::ng-deep .tui-avatar-stack {
+    display: flex;
+    width: min-content;
+}
+
+:host-context(.tui-avatar-stack) {
+    &[data-size='xs'] {
+        margin-right: -0.625rem;
+        box-shadow: 0 0 0 1px var(--tui-avatar-border, var(--tui-base-01));
+    }
+
+    &[data-size='s'] {
+        margin-right: -0.875rem;
+        box-shadow: 0 0 0 1px var(--tui-avatar-border, var(--tui-base-01));
+    }
+
+    &[data-size='m'] {
+        margin-right: -1.25rem;
+        box-shadow: 0 0 0 2px var(--tui-avatar-border, var(--tui-base-01));
+    }
+
+    &[data-size='l'] {
+        margin-right: -1.625rem;
+        box-shadow: 0 0 0 2px var(--tui-avatar-border, var(--tui-base-01));
+    }
+
+    &[data-size='xl'] {
+        margin-right: -2.25rem;
+        box-shadow: 0 0 0 3px var(--tui-avatar-border, var(--tui-base-01));
+    }
+
+    &[data-size='xxl'] {
+        margin-right: -3.375rem;
+        box-shadow: 0 0 0 3px var(--tui-avatar-border, var(--tui-base-01));
+    }
+}
+
+.t-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.t-text {
+    color: var(--tui-avatar-color, var(--tui-text-01));
+}
+
+.t-icon {
+    .fullsize();
+    color: var(--tui-avatar-color, var(--tui-text-01));
+
+    :host[data-size='xs'] & {
+        transform: scale(0.5);
+    }
+
+    :host[data-size='m'] & {
+        transform: scale(1.6);
+    }
+
+    :host[data-size='l'] & {
+        transform: scale(2);
+    }
+
+    :host[data-size='xl'] & {
+        transform: scale(3.2);
+    }
+}

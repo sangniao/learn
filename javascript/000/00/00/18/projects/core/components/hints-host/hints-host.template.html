@@ -1,0 +1,8 @@
+<div
+    *ngFor="let hint of hints$ | async"
+    role="tooltip"
+    @tuiParentAnimation
+    [tuiActiveZoneParent]="hint.activeZone || null"
+>
+    <ng-container *polymorpheusOutlet="hint.component; context: {$implicit: hint}"></ng-container>
+</div>

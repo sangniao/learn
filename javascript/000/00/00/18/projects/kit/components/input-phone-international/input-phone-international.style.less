@@ -1,0 +1,63 @@
+@import 'taiga-ui-local';
+
+@flag-width: 1.75rem;
+@flag-height: 1.25rem;
+
+:host {
+    display: block;
+
+    &._disabled {
+        pointer-events: none;
+    }
+}
+
+.t-hosted-dropdown {
+    display: block;
+}
+
+.t-country-select {
+    width: 5.625rem;
+
+    /* stylelint-disable */
+    &:not(._readonly) ::ng-deep input:not(:disabled) {
+        cursor: pointer;
+    }
+
+    &._readonly ::ng-deep input {
+        cursor: default;
+    }
+    /* stylelint-enable */
+}
+
+.t-arrow-icon {
+    .icon-button();
+
+    &_open {
+        transform: rotate(180deg);
+    }
+}
+
+.t-input-phone {
+    flex: 1;
+}
+
+.t-flag {
+    width: @flag-width;
+    height: @flag-height;
+    margin-left: -@space * 2;
+}
+
+.t-country-item-flag {
+    width: @flag-width;
+    height: @flag-height;
+}
+
+.t-country-item-name {
+    margin-left: @space * 3;
+    margin-right: auto;
+}
+
+.t-country-item-code {
+    color: var(--tui-text-02);
+    margin-right: @space;
+}

@@ -1,0 +1,15 @@
+<div class="t-content">
+    <div class="t-wrapper">
+        <ng-content></ng-content>
+    </div>
+</div>
+
+<tui-pie-chart
+    [masked]="true"
+    [value]="value"
+    [size]="size"
+    [activeItemIndex]="activeItemIndex"
+    (activeItemIndexChange)="onActiveItemIndexChange($event)"
+></tui-pie-chart>
+
+<div class="t-shield"></div>

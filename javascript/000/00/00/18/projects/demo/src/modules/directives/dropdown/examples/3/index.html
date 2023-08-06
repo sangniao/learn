@@ -1,0 +1,29 @@
+<div class="flex">
+    <tui-input [(ngModel)]="value">Changes propagate both ways</tui-input>
+    <label
+        class="flex"
+        [tuiDropdown]="dropdownContent"
+        [tuiDropdownManual]="open"
+    >
+        <tui-toggle [(ngModel)]="open"></tui-toggle>
+        Open dropdown
+    </label>
+</div>
+
+<ng-template
+    #dropdownContent="polymorpheus"
+    [polymorpheus]="$any('')"
+>
+    <div class="dropdown">
+        <tui-input [(ngModel)]="value">Changes propagate both ways</tui-input>
+        <p>
+            Use
+            <code>polymorpheus</code>
+            directive on the template to make changes propagate both ways
+        </p>
+        <p *ngIf="showBigText">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda at corporis ea hic illo ipsa
+            laboriosam laudantium nemo neque officiis pariatur quidem quos rerum sunt, temporibus tenetur ullam vitae?
+        </p>
+    </div>
+</ng-template>

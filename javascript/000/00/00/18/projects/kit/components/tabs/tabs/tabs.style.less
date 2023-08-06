@@ -1,0 +1,16 @@
+@import 'taiga-ui-local';
+
+:host {
+    .scrollbar-hidden();
+    .createStackingContext();
+    display: flex;
+    font: var(--tui-font-text-m);
+    height: var(--tui-height-l);
+    color: var(--tui-text-02);
+    box-shadow: inset 0 -1px var(--tui-base-03);
+    overflow: auto;
+}
+
+.t-underline {
+    z-index: -1;
+}

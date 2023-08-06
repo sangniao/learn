@@ -1,0 +1,11 @@
+/* Add application styles & imports to this file! */
+body {
+  overflow-x: hidden
+}
+button {
+  padding: 15px;
+  border: none;
+  background-color: teal;
+  color: #fff;
+  cursor: pointer;
+}

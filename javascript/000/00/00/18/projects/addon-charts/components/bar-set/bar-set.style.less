@@ -1,0 +1,44 @@
+:host {
+    position: relative;
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.t-wrapper {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    align-items: flex-end;
+
+    &:first-of-type {
+        margin-left: 25%;
+    }
+
+    &:last-of-type {
+        margin-right: 25%;
+    }
+}
+
+.t-bar {
+    transform-origin: bottom center;
+
+    &_negative {
+        transform: rotate(180deg);
+        opacity: var(--tui-disabled-opacity);
+    }
+
+    &&_flexible {
+        max-width: none;
+        width: 75%;
+        margin: 0 auto;
+    }
+}
+
+.t-label {
+    position: absolute;
+    top: -1.5rem;
+    font: var(--tui-font-text-xs);
+    color: var(--tui-text-02);
+}

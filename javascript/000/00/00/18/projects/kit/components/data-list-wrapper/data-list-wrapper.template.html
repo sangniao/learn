@@ -1,0 +1,28 @@
+<!-- TODO: remove $any in 4.0 -->
+<tui-data-list
+    *ngIf="items; else loading"
+    [emptyContent]="emptyContent"
+    [size]="$any(size)"
+>
+    <button
+        *ngFor="let item of items"
+        #elementRef="elementRef"
+        tuiElement
+        tuiOption
+        automation-id="tui-data-list-wrapper__option"
+        [value]="item"
+        [disabled]="disabledItemHandler(item)"
+    >
+        <span class="t-content">
+            <ng-container *polymorpheusOutlet="itemContent as text; context: getContext(item, elementRef)">
+                {{ text }}
+            </ng-container>
+        </span>
+    </button>
+</tui-data-list>
+<ng-template #loading>
+    <tui-loader
+        automation-id="tui-data-list-wrapper__loader"
+        class="t-loader"
+    ></tui-loader>
+</ng-template>

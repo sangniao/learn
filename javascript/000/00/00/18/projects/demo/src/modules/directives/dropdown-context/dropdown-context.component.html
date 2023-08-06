@@ -1,0 +1,105 @@
+<tui-doc-page
+    i18n-header
+    header="DropdownContext"
+    package="CORE"
+    type="directives"
+>
+    <ng-template pageTab>
+        <p i18n>
+            <code>DropdownContext</code>
+            allows to show custom right click context dropdown.
+        </p>
+        <h3>To close dropdown:</h3>
+        <ul class="tui-list tui-list_small">
+            <li class="tui-list__item">
+                Use
+                <strong>Esc</strong>
+            </li>
+            <li class="tui-list__item">
+                Make
+                <strong>mouse left/right click</strong>
+                outside of dropdown content
+            </li>
+            <li class="tui-list__item">
+                Manually toggle
+                <code>tuiDropdown</code>
+                to
+                <code>false</code>
+                using template reference variable (see first example)
+            </li>
+        </ul>
+
+        <tui-doc-example
+            id="basic"
+            i18n-heading
+            heading="Basic"
+            [content]="exampleBasic"
+        >
+            <tui-dropdown-context-example-1></tui-dropdown-context-example-1>
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="contextMenu"
+            i18n-heading
+            heading="Context menu"
+            [content]="exampleContextMenu"
+        >
+            <tui-dropdown-context-example-2></tui-dropdown-context-example-2>
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="reportMistakeForm"
+            i18n-heading
+            heading="Report mistake form"
+            [content]="exampleReportMistakeForm"
+        >
+            <tui-dropdown-context-example-3></tui-dropdown-context-example-3>
+        </tui-doc-example>
+    </ng-template>
+
+    <ng-template pageTab>
+        <tui-doc-demo>
+            <p
+                i18n
+                tuiDropdownContext
+                [tuiDropdown]="dropdownContent"
+                [tuiDropdownMinHeight]="dropdownMinHeight"
+                [tuiDropdownMaxHeight]="dropdownMaxHeight"
+                [tuiDropdownAlign]="dropdownAlign"
+                [tuiDropdownDirection]="dropdownDirection"
+                [tuiDropdownLimitWidth]="dropdownLimitWidth"
+            >
+                Right click on me to
+                <strong>see a dropdown</strong>
+                <ng-template #dropdownContent>Hello there!</ng-template>
+            </p>
+        </tui-doc-demo>
+        <dropdown-documentation></dropdown-documentation>
+    </ng-template>
+
+    <ng-template pageTab>
+        <ol class="b-demo-steps">
+            <li>
+                <p i18n>
+                    Import
+                    <code>TuiDropdownModule</code>
+                    into a module where you want to use our directive
+                </p>
+
+                <tui-doc-code
+                    filename="myComponent.module.ts"
+                    [code]="exampleModule"
+                ></tui-doc-code>
+            </li>
+
+            <li>
+                <p i18n>Add to the template:</p>
+
+                <tui-doc-code
+                    filename="myComponent.template.html"
+                    [code]="exampleHtml"
+                ></tui-doc-code>
+            </li>
+        </ol>
+    </ng-template>
+</tui-doc-page>

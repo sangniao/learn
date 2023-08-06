@@ -1,0 +1,51 @@
+<tui-hosted-dropdown
+    class="t-wrapper"
+    [canOpen]="interactive && !!filtered.length"
+    [content]="dropdownContent"
+    [open]="interactive && open && !!filtered.length"
+    (openChange)="onOpen($event)"
+    (focusedChange)="onFocused($event)"
+>
+    <tui-primitive-textfield
+        tuiValueAccessor
+        class="t-textfield"
+        [filler]="(getFiller$(mode) | async) || ''"
+        [nativeId]="nativeId"
+        [pseudoFocus]="innerPseudoFocused"
+        [pseudoHover]="pseudoHover"
+        [pseudoActive]="pseudoActive"
+        [invalid]="computedInvalid"
+        [focusable]="focusable"
+        [disabled]="disabled"
+        [readOnly]="readOnly"
+        [textMask]="textMaskOptions"
+        [tuiTextfieldIcon]="icon"
+        [value]="computedValue"
+        [postfix]="postfix"
+        (valueChange)="onValueChange($event)"
+        (keydown.arrowUp)="onArrowUp($event)"
+        (keydown.arrowDown)="onArrowDown($event)"
+    >
+        <ng-content></ng-content>
+        <input
+            tuiTextfield
+            inputmode="numeric"
+        />
+    </tui-primitive-textfield>
+</tui-hosted-dropdown>
+<ng-template #dropdownContent>
+    <tui-data-list
+        automation-id="tui-input-time__dropdown"
+        [size]="itemSize"
+    >
+        <button
+            *ngFor="let item of filtered"
+            tuiOption
+            automation-id="tui-input-time__item"
+            [disabled]="disabledItemHandler(item)"
+            [value]="item"
+        >
+            {{ item }}
+        </button>
+    </tui-data-list>
+</ng-template>

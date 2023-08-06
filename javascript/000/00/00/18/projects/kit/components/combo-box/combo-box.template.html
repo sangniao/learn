@@ -1,0 +1,48 @@
+<tui-hosted-dropdown
+    class="t-hosted"
+    [canOpen]="interactive"
+    [content]="datalist || ''"
+    [(open)]="open"
+    (tuiActiveZoneChange)="onActiveZone($event)"
+>
+    <tui-primitive-textfield
+        automation-id="tui-combo-box__textfield"
+        class="t-textfield"
+        [pseudoFocus]="computedFocused"
+        [pseudoHover]="pseudoHover"
+        [invalid]="computedInvalid"
+        [nativeId]="nativeId"
+        [readOnly]="readOnly"
+        [tuiTextfieldIcon]="arrow ? icon : ''"
+        [disabled]="computedDisabled"
+        [focusable]="computedFocusable"
+        [value]="nativeValue"
+        (valueChange)="onValueChange($event)"
+        (click)="toggle()"
+        (keydown.enter)="onFieldKeyDownEnter($event)"
+    >
+        <ng-content></ng-content>
+        <ng-content
+            select="input"
+            ngProjectAs="input"
+        ></ng-content>
+        <div
+            *ngIf="showValueTemplate"
+            ngProjectAs="tuiContent"
+            automation-id="tui-combo-box__template"
+            class="t-value"
+        >
+            <ng-container
+                *polymorpheusOutlet="computedContent as text; context: {$implicit: value!, active: computedFocused}"
+            >
+                {{ text }}
+            </ng-container>
+        </div>
+    </tui-primitive-textfield>
+
+    <ng-template #icon>
+        <div class="t-icon">
+            <ng-container *polymorpheusOutlet="arrow"></ng-container>
+        </div>
+    </ng-template>
+</tui-hosted-dropdown>

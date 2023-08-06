@@ -1,0 +1,5 @@
+<cdk-tree [dataSource]="dataSource">
+	<cdk-tree-node *cdkTreeNodeDef="let node; let isChecked = checked">
+		<span [ngClass]="{ 'node__label--checked': isChecked }">{{ node.label }}</span>
+	</cdk-tree-node>
+</cdk-tree>
